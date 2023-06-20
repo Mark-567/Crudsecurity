@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>User Record Management</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <link href="{% public 'stylesheets/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #212529;
+      color: #fff;
+    }
+
+    .navbar {
+      background-color: #343a40;
+    }
+
+    .navbar-brand {
+      color: #fff;
+      font-size: 1.5rem;
+    }
+
+    .navbar-brand:hover {
+      color: #fff;
+    }
+
+    .navbar-dark .navbar-nav .nav-link {
+      color: #fff;
+    }
+
+    .navbar-dark .navbar-nav .nav-link:hover {
+      color: #fff;
+    }
+
+    #logout-button {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    #logout-button:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .card {
+      border-radius: 5px;
+      background-color: #ffffff;
+    }
+
+    .table {
+      color: #212529;
+    }
+
+    .btn-warning {
+      background-color: #000000;
+      border-color: #000000;
+    }
+
+    .btn-danger {
+      background-color: #854040;
+      border-color: #854040;
+    }
+  </style>
+</head>
+
+<body class="d-flex flex-column min-vh-100 bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand">Dashboard</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" id="logout-button" href="/logout">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="card shadow" style="padding-top: 30px;" >
+          <div class="card-header bg-primary text-white text-center" style="padding: 10px; margin-left: 10px; margin-right: 10px;">
+            <h4 class="mb-0">All User Records</h4>
+          </div>
+          <div class="card-body p-4">
+            <div class="input-group mb-3">
+              <input type="text" id="search-input" class="form-control" placeholder="Search user...">
+            </div>
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Contact Number</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Region</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% users.forEach(user=> { %>
+                  <tr>
+                    <td><%= user.user_name %></td>
+                    <td><%= user.contact_number %></td>
+                    <td><%= user.email %></td>
+                    <td><%= user.age %></td>
+                    <td><%= user.region %></td>
+                    <td><%= user.city %></td>
+                    
+                    <td>
+                      <form action="/manager-edit" method="get">
+                        <input type="hidden" name="userID" value="<%= user.id %>">
+                        <button type="submit" class="btn btn-warning me-1">
+                          <i class="fa-solid fa-pen-to-square fa-lg" style="color: #ffffff;"></i>
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('input', function () {
+      const searchText = searchInput.value.toLowerCase();
+      const rows = document.querySelectorAll('tbody tr');
+      rows.forEach(row => {
+        const name = row.querySelector('td:first-child').textContent.toLowerCase();
+        row.style.display = name.includes(searchText) ? 'table-row' : 'none';
+      });
+    });
+
+    const logoutButton = document.getElementById('logout-button');
+    logoutButton.addEventListener('click', function () {
+      // Perform the logout logic here, e.g., redirect to the logout page or clear session data
+      alert('Logged out successfully!');
+      // Example: Redirect to the logout page
+      window.location.href = '/login';
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

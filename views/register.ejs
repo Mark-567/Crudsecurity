@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Final Project</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* Importing fonts from Google */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+    /* Reseting */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #212529;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 80px auto;
+      padding: 40px;
+      background-color: #ecf0f3;
+      border-radius: 15px;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      width: 80px;
+      margin: auto;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0px 0px 3px #5f5f5f, 0px 0px 0px 5px #ecf0f3, 8px 8px 15px #a7aaa7, -8px -8px 15px #fff;
+    }
+
+    .container .title {
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.4rem;
+      letter-spacing: 1.3px;
+      color: #555;
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+
+    .container form .form-group {
+      margin-bottom: 20px;
+    }
+
+    .container form .form-group label {
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    .container form .form-group input,
+    .container form .form-group select {
+      width: 100%;
+      display: block;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1.2rem;
+    }
+
+    .container form .form-group .input-icon {
+      position: relative;
+    }
+
+    .container form .form-group .input-icon i {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 10px;
+      color: #555;
+    }
+
+    .container form .form-group .btn {
+      width: 100%;
+      height: 40px;
+      background-color: #68ccfa;
+      color: #fff;
+      border-radius: 25px;
+      border: none;
+      font-weight: bold;
+      letter-spacing: 1.3px;
+    }
+
+    .container form .form-group .btn:hover {
+      background-color: #039BE5;
+    }
+
+    .container form .form-group .text-center a {
+      text-decoration: none;
+      font-size: 0.8rem;
+      color: #03A9F4;
+    }
+
+    .container form .form-group .text-center a:hover {
+      color: #039BE5;
+    }
+
+    .container .footer {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .container .footer p {
+      margin-bottom: 0;
+      color: #888;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2 class="title">Register</h2>
+    <form method="POST" action="/register">
+      <% if (typeof message !== 'undefined' && message) { %>
+      <p style="color: red;"><%= message %></p>
+      <% } %>
+      <div class="form-group">
+        <label for="user_name">Username</label>
+        <div class="input-icon">
+          <input type="text" name="user_name" id="user_name" placeholder="Username" required>
+          <i class="fas fa-user"></i>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <div class="input-icon">
+          <input type="email" name="email" id="email" placeholder="Email" required>
+          <i class="far fa-envelope"></i>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="contact_number">Phone Number</label>
+        <div class="input-icon">
+          <input type="text" name="contact_number" id="contact_number" placeholder="Phone Number" pattern="^(\+?63|0)[\d]{10}$" required>
+          <i class="fas fa-phone"></i>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <div class="input-icon">
+          <input type="number" name="age" id="age" placeholder="Age" required>
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="region">Region</label>
+        <div class="input-icon">
+          <select name="region" id="region" placeholder="Region" required>
+            <option value="" disabled selected>Select Region</option>
+            <option value="National Capital Region">National Capital Region</option>
+            <option value="Cordillera Administrative Region">Cordillera Administrative Region</option>
+            <option value="Ilocos Region">Ilocos Region</option>
+            <option value="Cagayan Valley">Cagayan Valley</option>
+            <option value="Central Luzon">Central Luzon</option>
+            <option value="Calabarzon">Calabarzon</option>
+            <option value="Mimaropa">Mimaropa</option>
+            <option value="Bicol Region">Bicol Region</option>
+            <option value="Western Visayas">Western Visayas</option>
+            <option value="Central Visayas">Central Visayas</option>
+            <option value="Eastern Visayas">Eastern Visayas</option>
+            <option value="Zamboanga Peninsula">Zamboanga Peninsula</option>
+            <option value="Northern Mindanao">Northern Mindanao</option>
+            <option value="Davao Region">Davao Region</option>
+            <option value="Soccsksargen">Soccsksargen</option>
+            <option value="Caraga">Caraga</option>
+            <option value="Bangsamoro Autonomous Region in Muslim Mindanao">Bangsamoro Autonomous Region in Muslim Mindanao</option>
+          </select>
+          
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="city">City</label>
+        <div class="input-icon">
+          <select name="city" id="city" placeholder="City" required>
+            <option value="" disabled selected>Select City</option>
+          </select>
+          
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="zipcode">Zip Code</label>
+        <div class="input-icon">
+          <input type="number" name="zipcode" id="zipcode" placeholder="Zip Code" pattern="[0-9]{4}" title="Zip code must contain exactly four numbers" required oninput="limitInputLength(this, 4)">
+        </div>
+      </div>
+      
+      
+      
+      
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-icon">
+          <input type="password" name="password" id="password" placeholder="Password" pattern="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+            title="Password must have at least 8 characters, 1 special character, and 1 number" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="usertype">User Type</label>
+        <select name="usertype" id="usertype" class="form-control">
+          <option disabled selected>User Type</option>
+          <option value="Admin">Admin</option>
+          <option value="Manager">Manager</option>
+          <option value="User">User</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn">Register</button>
+      </div>
+      <div class="form-group text-center">
+        <a href="/login">Already have an account? Login</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const regionSelect = document.getElementById('region');
+    const citySelect = document.getElementById('city');
+
+    regionSelect.addEventListener('change', function () {
+      const selectedRegion = this.value;
+      let cities = [];
+
+      switch (selectedRegion) {
+        case 'National Capital Region':
+          cities = ['Caloocan', 'Las Piñas', 'Makati', 'Malabon', 'Mandaluyong', 'Manila', 'Marikina', 'Muntinlupa', 'Navotas', 'Parañaque', 'Pasay', 'Pasig', 'Quezon City', 'San Juan', 'Taguig', 'Valenzuela'];
+          break;
+        case 'Cordillera Administrative Region':
+          cities = ['Abra', 'Apayao', 'Benguet', 'Ifugao', 'Kalinga', 'Mountain Province'];
+          break;
+        case 'Ilocos Region':
+          cities = ['Ilocos Norte', 'Ilocos Sur', 'La Union', 'Pangasinan'];
+          break;
+        case 'Cagayan Valley':
+          cities = ['Batanes', 'Cagayan', 'Isabela', 'Nueva Vizcaya', 'Quirino'];
+          break;
+        case 'Central Luzon':
+          cities = ['Aurora', 'Bataan', 'Bulacan', 'Nueva Ecija', 'Pampanga', 'Tarlac', 'Zambales'];
+          break;
+        case 'Calabarzon':
+          cities = ['Batangas', 'Cavite', 'Laguna', 'Quezon', 'Rizal'];
+          break;
+        case 'Mimaropa':
+          cities = ['Marinduque', 'Occidental Mindoro', 'Oriental Mindoro', 'Palawan', 'Romblon'];
+          break;
+        case 'Bicol Region':
+          cities = ['Albay', 'Camarines Norte', 'Camarines Sur', 'Catanduanes', 'Masbate', 'Sorsogon'];
+          break;
+        case 'Western Visayas':
+          cities = ['Aklan', 'Antique', 'Capiz', 'Guimaras', 'Iloilo', 'Negros Occidental'];
+          break;
+        case 'Central Visayas':
+          cities = ['Bohol', 'Cebu', 'Negros Oriental', 'Siquijor'];
+          break;
+        case 'Eastern Visayas':
+          cities = ['Biliran', 'Eastern Samar', 'Leyte', 'Northern Samar', 'Samar', 'Southern Leyte'];
+          break;
+        case 'Zamboanga Peninsula':
+          cities = ['Zamboanga del Norte', 'Zamboanga del Sur', 'Zamboanga Sibugay'];
+          break;
+        case 'Northern Mindanao':
+          cities = ['Bukidnon', 'Camiguin', 'Lanao del Norte', 'Misamis Occidental', 'Misamis Oriental'];
+          break;
+        case 'Davao Region':
+          cities = ['Davao de Oro', 'Davao del Norte', 'Davao del Sur', 'Davao Occidental', 'Davao Oriental'];
+          break;
+        case 'Soccsksargen':
+          cities = ['Cotabato', 'South Cotabato', 'Sultan Kudarat', 'Sarangani', 'General Santos'];
+          break;
+        case 'Caraga':
+          cities = ['Agusan del Norte', 'Agusan del Sur', 'Dinagat Islands', 'Surigao del Norte', 'Surigao del Sur'];
+          break;
+        case 'Bangsamoro Autonomous Region in Muslim Mindanao':
+          cities = ['Basilan', 'Lanao del Sur', 'Maguindanao', 'Sulu', 'Tawi-Tawi'];
+          break;
+        default:
+          cities = [];
+          break;
+      }
+
+      // Clear the city select options
+      citySelect.innerHTML = '';
+
+      // Add new city options based on the selected region
+      if (cities.length > 0) {
+        cities.forEach(function (city) {
+          const option = document.createElement('option');
+          option.value = city;
+          option.textContent = city;
+          citySelect.appendChild(option);
+        });
+      } else {
+        const option = document.createElement('option');
+        option.disabled = true;
+        option.selected = true;
+        option.textContent = 'Select City';
+        citySelect.appendChild(option);
+      }
+    });
+
+      function limitInputLength(inputElement, maxLength) {
+        if (inputElement.value.length > maxLength) {
+          inputElement.value = inputElement.value.slice(0, maxLength);
+        }
+      }
+      
+      var form = document.querySelector('form');
+
+  // Add a submit event listener to the form
+  form.addEventListener('submit', function(event) {
+    // Get the email input value
+    var emailInput = document.getElementById('email').value;
+
+    // Validate the email format
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(emailInput)) {
+      // Display an error message
+      alert('Please enter a valid email address.');
+      // Prevent form submission
+      event.preventDefault();
+    }
+  });
+      
+  </script>
+</body>
+
+</html>
